@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Will You Be My Valentine? ❤️</title>
+  <title>Something Serious ❤️</title>
   <style>
     body {
       margin: 0;
@@ -15,14 +15,23 @@
       overflow: hidden;
     }
 
+    .screen {
+      display: none;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .active {
+      display: block;
+    }
+
     .card {
       background: white;
       padding: 30px 40px;
       border-radius: 20px;
-      text-align: center;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       max-width: 430px;
-      z-index: 2;
+      margin: auto;
     }
 
     h1 {
@@ -36,19 +45,9 @@
       line-height: 1.6;
     }
 
-    .intro {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 20px;
-    }
-
-    .buttons {
-      margin-top: 20px;
-    }
-
     button {
-      padding: 10px 25px;
-      margin: 10px;
+      padding: 12px 30px;
+      margin-top: 20px;
       font-size: 16px;
       border: none;
       border-radius: 25px;
@@ -62,17 +61,6 @@
       transform: scale(1.1);
     }
 
-    .heart {
-      font-size: 35px;
-      margin-top: 15px;
-      animation: beat 1s infinite;
-    }
-
-    @keyframes beat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
     /* Floating hearts */
     .floating-heart {
       position: absolute;
@@ -82,23 +70,14 @@
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) scale(1.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
     }
 
-    /* Full screen love message */
+    /* Full screen love */
     .fullscreen-love {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: linear-gradient(to right, #ff758c, #ff7eb3);
       display: none;
       justify-content: center;
@@ -107,77 +86,98 @@
       color: white;
       text-align: center;
       z-index: 10;
+      padding: 20px;
     }
 
     .fullscreen-love h1 {
-      font-size: 50px;
-      margin-bottom: 10px;
+      font-size: 48px;
     }
 
     .fullscreen-love p {
       font-size: 22px;
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <p class="intro">
-      Hey babe 🤍<br>
-      I celebrated six years alone…<br>
-      and finally this year, I have <b>you</b> with me —<br>
-      even if it’s long distance 🥺✨
-    </p>
+  <!-- SCREEN 1 : Serious Intro -->
+  <div class="screen active" id="screen1">
+    <div class="card">
+      <h1>📩 New Message</h1>
+      <p>
+        <b>Swapna Shera</b> sent you something serious.<br><br>
+        Please read it carefully… 🤍
+      </p>
+      <button onclick="goNext()">Open</button>
+    </div>
+  </div>
 
-    <h1>Happy Propose Day 💍</h1>
+  <!-- SCREEN 2 : Proposal -->
+  <div class="screen" id="screen2">
+    <div class="card">
+      <p>
+        Hey babe 🤍<br>
+        I celebrated six years alone…<br>
+        and finally this year, I have <b>you</b> —<br>
+        even if it’s long distance 🥺✨
+      </p>
 
-    <p>
-      Distance made us stronger,<br>
-      missing you made me sure ❤️<br>
-      You’re my favorite person, my safe place,<br>
-      and my daily reason to smile 🥺
-    </p>
+      <h1>Happy Propose Day 💍</h1>
 
-    <p>
-      Sooo… serious question 😄<br>
-      <b>Will you be my Valentine forever?</b> 💖
-    </p>
+      <p>
+        Distance made us stronger ❤️<br>
+        missing you made me sure.<br>
+        You’re my safe place,<br>
+        my favorite human, my penguin 🐧
+      </p>
 
-    <div class="buttons">
+      <p>
+        Sooo… serious question 😄<br>
+        <b>Will you be my Valentine forever?</b> 💖
+      </p>
+
       <button onclick="showLove()">Yes 😍</button>
       <button onclick="showLove()">Yes Obviously 🙈</button>
     </div>
-
-    <div class="heart">❤️</div>
   </div>
 
-  <!-- Full screen message -->
+  <!-- SCREEN 3 : Final Love -->
   <div class="fullscreen-love" id="loveScreen">
     <h1>I Love You ❤️</h1>
-    <p>Today, tomorrow, forever… it’s you 💕</p>
+    <p>You just made the <b>best decision</b> of your life 😎</p>
+    <p>No refunds. No returns 😜</p>
+    <p>Forever us 💕</p>
     <div style="font-size:40px;">💖💖💖</div>
   </div>
 
+  <!-- Music -->
+  <audio id="loveMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+  </audio>
+
   <script>
-    function showLove() {
-      document.getElementById("loveScreen").style.display = "flex";
+    function goNext() {
+      document.getElementById("screen1").classList.remove("active");
+      document.getElementById("screen2").classList.add("active");
     }
 
-    // Floating hearts animation
+    function showLove() {
+      document.getElementById("loveScreen").style.display = "flex";
+      document.getElementById("loveMusic").play();
+    }
+
     function createHeart() {
       const heart = document.createElement("div");
-      heart.classList.add("floating-heart");
-      heart.innerHTML = "❤️";
+      heart.className = "floating-heart";
+      heart.innerHTML = ["❤️","💖","💕","💘"][Math.floor(Math.random()*4)];
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = (20 + Math.random() * 20) + "px";
       document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
+      setTimeout(() => heart.remove(), 6000);
     }
 
-    setInterval(createHeart, 400);
+    setInterval(createHeart, 500);
   </script>
 
 </body>
