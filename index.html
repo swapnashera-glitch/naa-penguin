@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Something Serious ❤️</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -11,7 +15,7 @@
       justify-content: center;
       align-items: center;
       background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
       overflow: hidden;
     }
 
@@ -27,9 +31,9 @@
 
     .card {
       background: white;
-      padding: 30px 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      padding: 35px 40px;
+      border-radius: 22px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
       max-width: 430px;
       margin: auto;
     }
@@ -37,45 +41,33 @@
     h1 {
       color: #e63946;
       margin-bottom: 15px;
+      font-weight: 600;
     }
 
     p {
-      font-size: 17px;
+      font-size: 16px;
       color: #333;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     button {
-      padding: 12px 30px;
+      padding: 12px 32px;
       margin-top: 20px;
       font-size: 16px;
       border: none;
-      border-radius: 25px;
+      border-radius: 30px;
       cursor: pointer;
       background-color: #e63946;
       color: white;
-      transition: transform 0.2s;
+      transition: 0.3s;
     }
 
     button:hover {
-      transform: scale(1.1);
+      transform: scale(1.08);
     }
 
-    /* Floating hearts */
-    .floating-heart {
-      position: absolute;
-      font-size: 24px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.7;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-100vh); opacity: 0; }
-    }
-
-    /* Full screen love */
-    .fullscreen-love {
+    /* Celebration screen */
+    .celebration {
       position: fixed;
       inset: 0;
       background: linear-gradient(to right, #ff758c, #ff7eb3);
@@ -84,101 +76,90 @@
       align-items: center;
       flex-direction: column;
       color: white;
-      text-align: center;
       z-index: 10;
-      padding: 20px;
+      text-align: center;
     }
 
-    .fullscreen-love h1 {
-      font-size: 48px;
+    .celebration h1 {
+      font-size: 50px;
     }
 
-    .fullscreen-love p {
-      font-size: 22px;
-      margin: 5px 0;
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      animation: fall 4s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- SCREEN 1 : Serious Intro -->
-  <div class="screen active" id="screen1">
-    <div class="card">
-      <h1>📩 New Message</h1>
-      <p>
-        <b>Swapna Shera</b> sent you something serious.<br><br>
-        Please read it carefully… 🤍
-      </p>
-      <button onclick="goNext()">Open</button>
-    </div>
+<!-- Screen 1 -->
+<div class="screen active" id="screen1">
+  <div class="card">
+    <h1>📩 New Message</h1>
+    <p><b>Swapna Shera</b> sent you something serious.<br>Please read carefully 🤍</p>
+    <button onclick="next(1,2)">Open</button>
   </div>
+</div>
 
-  <!-- SCREEN 2 : Proposal -->
-  <div class="screen" id="screen2">
-    <div class="card">
-      <p>
-        Hey babe 🤍<br>
-        I celebrated six years alone…<br>
-        and finally this year, I have <b>you</b> —<br>
-        even if it’s long distance 🥺✨
-      </p>
+<!-- Screen 2 -->
+<div class="screen" id="screen2">
+  <div class="card">
+    <p>
+      Hey babe 🤍<br>
+      I celebrated six years alone…<br>
+      and finally this year, I have <b>you</b><br>
+      even if it’s long distance 🥺✨
+    </p>
 
-      <h1>Happy Propose Day 💍</h1>
+    <p>
+      You’re my safe place,<br>
+      my favorite human,<br>
+      my penguin 🐧
+    </p>
 
-      <p>
-        Distance made us stronger ❤️<br>
-        missing you made me sure.<br>
-        You’re my safe place,<br>
-        my favorite human, my penguin 🐧
-      </p>
-
-      <p>
-        Sooo… serious question 😄<br>
-        <b>Will you be my Valentine forever?</b> 💖
-      </p>
-
-      <button onclick="showLove()">Yes 😍</button>
-      <button onclick="showLove()">Yes Obviously 🙈</button>
-    </div>
+    <button onclick="next(2,3)">Next 💌</button>
   </div>
+</div>
 
-  <!-- SCREEN 3 : Final Love -->
-  <div class="fullscreen-love" id="loveScreen">
-    <h1>I Love You ❤️</h1>
-    <p>You just made the <b>best decision</b> of your life 😎</p>
-    <p>No refunds. No returns 😜</p>
-    <p>Forever us 💕</p>
-    <div style="font-size:40px;">💖💖💖</div>
+<!-- Screen 3 (Serious Question) -->
+<div class="screen" id="screen3">
+  <div class="card">
+    <h1>Okay… serious question 😌</h1>
+    <p>
+      Distance made me sure of one thing ❤️<br>
+      I choose you, every day.
+    </p>
+
+    <p><b>Will you be my Valentine forever? 💖</b></p>
+
+    <button onclick="celebrate()">Yes 😍</button>
+    <button onclick="celebrate()">Yes Obviously 🙈</button>
   </div>
+</div>
 
-  <!-- Music -->
-  <audio id="loveMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3">
-</audio>
+<!-- Celebration Screen -->
+<div class="celebration" id="celebration">
+  <h1>I Love You ❤️</h1>
+  <p>You just made the best decision of your life 😎</p>
+  <p>No refunds. No returns 😜</p>
+  <p>Forever us 💕</p>
+</div>
 
-  <script>
-    function goNext() {
-      document.getElementById("screen1").classList.remove("active");
-      document.getElementById("screen2").classList.add("active");
-    }
-
-    function showLove() {
-      document.getElementById("loveScreen").style.display = "flex";
-      document.getElementById("loveMusic").play();
-    }
-
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "floating-heart";
-      heart.innerHTML = ["❤️","💖","💕","💘"][Math.floor(Math.random()*4)];
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (20 + Math.random() * 20) + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-
-    setInterval(createHeart, 500);
-  </script>
-
-</body>
-</html>
+<script>
+  function next(from, to) {
+    document.getElementById("screen" + from).classList.remove("active");
+    document.g
