@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine? ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 430px;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #e63946;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .intro {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 25px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      background-color: #e63946;
+      color: white;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .heart {
+      font-size: 35px;
+      margin-top: 15px;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* Floating hearts */
+    .floating-heart {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Full screen love message */
+    .fullscreen-love {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .fullscreen-love h1 {
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
+
+    .fullscreen-love p {
+      font-size: 22px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <p class="intro">
+      Hey babe 🤍<br>
+      I celebrated six years alone…<br>
+      and finally this year, I have <b>you</b> with me —<br>
+      even if it’s long distance 🥺✨
+    </p>
+
+    <h1>Happy Propose Day 💍</h1>
+
+    <p>
+      Distance made us stronger,<br>
+      missing you made me sure ❤️<br>
+      You’re my favorite person, my safe place,<br>
+      and my daily reason to smile 🥺
+    </p>
+
+    <p>
+      Sooo… serious question 😄<br>
+      <b>Will you be my Valentine forever?</b> 💖
+    </p>
+
+    <div class="buttons">
+      <button onclick="showLove()">Yes 😍</button>
+      <button onclick="showLove()">Yes Obviously 🙈</button>
+    </div>
+
+    <div class="heart">❤️</div>
+  </div>
+
+  <!-- Full screen message -->
+  <div class="fullscreen-love" id="loveScreen">
+    <h1>I Love You ❤️</h1>
+    <p>Today, tomorrow, forever… it’s you 💕</p>
+    <div style="font-size:40px;">💖💖💖</div>
+  </div>
+
+  <script>
+    function showLove() {
+      document.getElementById("loveScreen").style.display = "flex";
+    }
+
+    // Floating hearts animation
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("floating-heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (20 + Math.random() * 20) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+
+</body>
+</html>
