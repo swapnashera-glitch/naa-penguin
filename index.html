@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>Something Serious ❤️</title>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -14,44 +14,38 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      background: linear-gradient(to right, #ffd1dc, #ffe6f0);
       font-family: 'Poppins', sans-serif;
       overflow: hidden;
     }
 
-    .screen {
-      display: none;
-      text-align: center;
-      padding: 30px;
-    }
-
-    .active {
-      display: block;
-    }
+    .screen { display: none; text-align: center; padding: 30px; }
+    .active { display: block; }
 
     .card {
       background: white;
       padding: 35px 40px;
-      border-radius: 22px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-      max-width: 430px;
+      border-radius: 24px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.15);
+      max-width: 420px;
       margin: auto;
     }
 
     h1 {
+      font-family: 'Dancing Script', cursive;
       color: #e63946;
       margin-bottom: 15px;
-      font-weight: 600;
+      font-size: 34px;
     }
 
     p {
-      font-size: 16px;
       color: #333;
-      line-height: 1.7;
+      line-height: 1.8;
+      font-size: 16px;
     }
 
     button {
-      padding: 12px 32px;
+      padding: 12px 30px;
       margin-top: 20px;
       font-size: 16px;
       border: none;
@@ -59,107 +53,108 @@
       cursor: pointer;
       background-color: #e63946;
       color: white;
-      transition: 0.3s;
+      font-family: 'Poppins', sans-serif;
+      transition: transform 0.2s;
     }
 
-    button:hover {
-      transform: scale(1.08);
-    }
+    button:hover { transform: scale(1.07); }
 
-    /* Celebration screen */
-    .celebration {
+    /* Final screen */
+    .final {
       position: fixed;
       inset: 0;
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
       display: none;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       color: white;
-      z-index: 10;
       text-align: center;
+      z-index: 10;
     }
 
-    .celebration h1 {
+    .final h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 52px;
+      margin-bottom: 8px;
+    }
+
+    .final p {
+      font-size: 18px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .penguins {
       font-size: 50px;
+      margin-top: 12px;
+      animation: cuddle 1.8s ease-in-out infinite;
     }
 
-    /* Confetti */
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: red;
-      animation: fall 4s linear infinite;
-      opacity: 0.8;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-10vh) rotate(0deg);
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-      }
+    @keyframes cuddle {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
 
-<!-- Screen 1 -->
+<!-- Slide 1 -->
 <div class="screen active" id="screen1">
   <div class="card">
-    <h1>📩 New Message</h1>
-    <p><b>Swapna Shera</b> sent you something serious.<br>Please read carefully 🤍</p>
+    <h1>New Message 💌</h1>
+    <p>
+      <b>Satish Reddy</b>,<br>
+      you got something serious<br>
+      from <b>Swapna Shera</b> 🤍
+    </p>
     <button onclick="next(1,2)">Open</button>
   </div>
 </div>
 
-<!-- Screen 2 -->
+<!-- Slide 2 -->
 <div class="screen" id="screen2">
   <div class="card">
     <p>
-      Hey babe 🤍<br>
+      Hey babe 🤍<br><br>
       I celebrated six years alone…<br>
-      and finally this year, I have <b>you</b><br>
-      even if it’s long distance 🥺✨
+      and finally this year,<br>
+      I have <b>you</b> 🥺<br><br>
+      Even if it’s long distance,<br>
+      my heart chose you 🐧
     </p>
-
-    <p>
-      You’re my safe place,<br>
-      my favorite human,<br>
-      my penguin 🐧
-    </p>
-
     <button onclick="next(2,3)">Next 💌</button>
   </div>
 </div>
 
-<!-- Screen 3 (Serious Question) -->
+<!-- Slide 3 -->
 <div class="screen" id="screen3">
   <div class="card">
-    <h1>Okay… serious question 😌</h1>
-    <p>
-      Distance made me sure of one thing ❤️<br>
-      I choose you, every day.
-    </p>
+    <h1>One Question 💖</h1>
+    <p><b>Will you be my Valentine forever?</b></p>
 
-    <p><b>Will you be my Valentine forever? 💖</b></p>
-
-    <button onclick="celebrate()">Yes 😍</button>
-    <button onclick="celebrate()">Yes Obviously 🙈</button>
+    <button onclick="showLove()">Yes 😍</button>
+    <button onclick="showLove()">Yes Obviously 🙈</button>
   </div>
 </div>
 
-<!-- Celebration Screen -->
-<div class="celebration" id="celebration">
+<!-- Final Slide -->
+<div class="final" id="final">
   <h1>I Love You ❤️</h1>
-  <p>You just made the best decision of your life 😎</p>
-  <p>No refunds. No returns 😜</p>
-  <p>Forever us 💕</p>
+  <p>Forever us</p>
+  <div class="penguins">🐧💞🐧</div>
 </div>
 
 <script>
   function next(from, to) {
     document.getElementById("screen" + from).classList.remove("active");
-    document.g
+    document.getElementById("screen" + to).classList.add("active");
+  }
+
+  function showLove() {
+    document.getElementById("final").style.display = "flex";
+  }
+</script>
+
+</body>
+</html>
